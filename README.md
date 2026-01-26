@@ -59,7 +59,7 @@ python manage.py migrate
 python manage.py runserver
 
 # Start celery worker
-celery -A foodkadeh worker --loglevel=INFO
+celery -A carservices worker --loglevel=INFO
 ```
 
 ## 🧪 API Documentation
