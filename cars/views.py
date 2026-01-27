@@ -8,6 +8,8 @@ from rest_framework.viewsets import GenericViewSet
 
 
 class CarView(ListModelMixin, DestroyModelMixin, RetrieveModelMixin, GenericViewSet):
-    queryset = Car.objects.select_related("owner").all()
     serializer_class = CarSerializer
     permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Car.objects.select_related("category").filter(owner=self.request.user)

@@ -8,6 +8,15 @@ class CarSerializer(ModelSerializer):
     owner = serializers.StringRelatedField(read_only=True)
     category = serializers.StringRelatedField(read_only=True)
     
-    class Meta :
+    class Meta:
         model = Car
-        fields = ("id", "name", "category", "owner", "pelak", "shomare_shasi", "model")
+        fields = (
+            "id",
+            "name",
+            "category",
+            "owner",
+            "pelak",
+            "vin",
+            "model_year",
+            "created_at",
+        )
