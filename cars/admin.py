@@ -9,4 +9,4 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Car)
 class CarAdmin(admin.ModelAdmin):
-    list_display = ("id", "name","owner", "category", "pelak", "shomare_shasi")
+    list_display = ("id", "name","owner", "category", "pelak", "vin")
