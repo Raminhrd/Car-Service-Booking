@@ -56,7 +56,7 @@ class OTPRequestView(APIView):
         normalized_phone = serializer.validated_data["phone_number"]
 
         otp = generate_otp()
-        
+        print(otp)
         cache.set(f"otp_{raw_phone}", otp, timeout=OTP_EXPIRY_SECONDS)
         send_otp_sms.delay(raw_phone, otp)
 
