@@ -1,6 +1,6 @@
 from django.utils import timezone
 from rest_framework import serializers
-
+from django.db import transaction
 from booking.models import Booking
 
 
@@ -65,9 +65,11 @@ class BookingSerializer(serializers.ModelSerializer):
 
         return attrs
 
-    def create(self, validated_data):
-        validated_data["user"] = self.context["request"].user
 
-        if not validated_data.get("duration_minutes"):
-            validated_data["duration_minutes"] = validated_data["service"].base_duration_minutes
-        return super().create(validated_data)
+    def create(self, validated_data):
+        user = self.context["request"].user
+        validated_data["user"] = user
+
+        with transaction.atomic():
+            booking = super().create(validated_data)
+            return booking
