@@ -32,7 +32,8 @@ DEBUG=True
 SECRET_KEY=your-secret-key
 ALLOWED_HOSTS=127.0.0.1,localhost
 REDIS_URL=redis://127.0.0.1:6379/1
-CELERY_BROKER_URL=redis://127.0.0.1:6379/0 CELERY_RESULT_BACKEND=redis://127.0.0.1:6379/0
+CELERY_BROKER_URL=redis://127.0.0.1:6379/0 
+CELERY_RESULT_BACKEND=redis://127.0.0.1:6379/0
 
 FARAZ_SMS_API_KEY=key
 FARAZ_SMS_LOGIN_OTP_PATTERN_CODE=code
@@ -59,7 +60,7 @@ python manage.py migrate
 python manage.py runserver
 
 # Start celery worker
-celery -A carservices worker --loglevel=INFO
+celery -A carservices worker --loglevel=INFO --pool=solo
 ```
 
 ## 🧪 API Documentation
